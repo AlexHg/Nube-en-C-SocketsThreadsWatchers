@@ -1,11 +1,11 @@
 # Nube-en-C-SocketsThreadsWatchers
 
-##Compilar:
+## Compilar:
 
 gcc -pthread server.c -o serv
 gcc -pthread client.c -o cli
 
-##Notas:
+## Notas:
 
 Nube de N clientes, definidos en el codigo 3 pero expandibles.
 En el proyecto deben ir carpetas especiales donde se guarda el contenido de los clientes y el servidor (cloud/ y servercloud/ respectivamente)
@@ -18,7 +18,7 @@ Las peticiones funcionan a partir de watchers por lo que los usuarios no tienen 
 *Usa archivos de registro para ver la actividad del usuario
 *Aunque un cliente se conecte posteriormente a una acción, este tambien será sincronizado.
 
-##Estructura de ficheros y carpetas
+## Estructura de ficheros y carpetas
 
 - Cliente1
 | - cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
