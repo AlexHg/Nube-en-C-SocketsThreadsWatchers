@@ -205,14 +205,11 @@ void *dist_request(){
 }
 
 void *parallel_syncEvent(void *thread_inf){
-
-
     DATA_THREAD *thread_info; 
     thread_info = (DATA_THREAD *) thread_inf;
 
     //int idSocket, 
     int idThread;//, idc;
-
 
     //idSocket = thread_info->idSocket;
     idThread = thread_info->idThread;
@@ -232,7 +229,7 @@ void *parallel_syncEvent(void *thread_inf){
      		usleep(2000);
      		//printf("wait");
      	}*/
-        if(tamano_cola(&e_cola[idThread]) > 0 && conections[idThread] == 1 && distr_request != 1){
+        if(tamano_cola(&e_cola[idThread]) > 0 && conections[idThread] == 1 /*&& distr_request != 1*/){
         //pthread_mutex_lock(&mutex[idThread]);
             NOTIFY sync_event;
             char buffer[TRAMAS];
@@ -241,7 +238,7 @@ void *parallel_syncEvent(void *thread_inf){
 
             usleep(1600);
             desencolar(&e_cola[idThread], &sync_event);
-            //printf("\nIntentando pasar al cliente %d\n",idThread);
+            printf("\nIntentando pasar al cliente %d\n",idThread);
 
             if((sync_event.event_id == 0 || sync_event.event_id == 4) &&  /* SOLO PARA ENVIAR */ sync_event.event_id != 5 && sync_event.full_path != NULL) {
                 char fullName_file[1024];
@@ -492,23 +489,24 @@ void *receive_from(void * inx){
     int breakit = 0;
     char brk[] = "BREAKED";
 
+    //printf("before loop\n");
     LOOP:
         strcpy(file_info,"");
+        //printf("Waiting request: %d\n",distr_request);
         //Recibe nombre, tipo y tamaño. si los obtiene sigue con el contenido
-        if(distr_request == 1){
+        /*if(distr_request == 1){
             sleep(1);
             goto LOOP;
-        } 
+        } */
         while(recv(idc[*id_hilo], (void *)file_info, sizeof(file_name), 0) > 0){
         //pthread_mutex_lock(&mutex[*id_hilo]);
-
+            printf("in recv");
             progress_count = 0;
             progress = 0;
             action_id = 0;
             size = 0;
 
             if(file_info_size = split(file_info, ',', &file_info_arr) < 3){
-                
                 //printf("error");
                 //exit(1);
                 goto LOOP;
@@ -521,9 +519,9 @@ void *receive_from(void * inx){
             size = strtof(file_info_arr[2], NULL); 
             //size*= TRAMAS;
             //size+= TRAMAS;
-            //printf("\nFile: %s\n", file_name);
-            //printf("\naction: %d\n", action_id);
-            //printf("\nsize: %2.f\n", size);
+            printf("\nFile: %s\n", file_name);
+            printf("\naction: %d\n", action_id);
+            printf("\nsize: %2.f\n", size);
 
             if(action_id == 0 || action_id == 4){
                 fd1 = open(file_name, O_WRONLY|O_CREAT|O_TRUNC, 0700);
@@ -577,10 +575,11 @@ void *receive_from(void * inx){
             strcpy(evento.full_path,file_name);
             evento.from_id = *id_hilo;
             evento.event_id = action_id;
-            //printf("HOLA");
+            printf("HOLA");
             //ENCOLA PARA ENVIO DE LOS OTROS HILOS (CLIENTES)
             for(int c = 0; c < NUMERO_CLIENTES; c++){
                 if(c != *id_hilo){
+                    printf("Encolando a %d\n",c);
                     encolar(&e_cola[c], evento);
                 }
             }
