@@ -20,21 +20,21 @@ Las peticiones funcionan a partir de watchers por lo que los usuarios no tienen 
 
 ## Estructura de ficheros y carpetas
 
-- Cliente1
-| - cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
-| - client.c (Puerto por defecto 8167)
-| - log.txt (vacio)
-| - submit.txt (vacio)
-- Cliente2
-| - cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
-| - client.c (Cambiar puerto a 8168)
-| - log.txt (vacio)
-| - submit.txt (vacio)
-- Cliente3
-| - cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
-| - client.c (Cambiar puerto a 8169)
-| - log.txt (vacio)
-| - submit.txt (vacio)
-- Servidor
-| - servercloud/ (vacia) <- Aqui se sincronizan todos los archivos para luego reenviarlos a los demás clientes
-| - server.c
+Cliente1
+| cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
+| client.c (Puerto por defecto 8167)
+| log.txt (vacio)
+| submit.txt (vacio)
+Cliente2
+| cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
+| client.c (Cambiar puerto a 8168)
+| log.txt (vacio)
+| submit.txt (vacio)
+Cliente3
+| cloud/ <- Watcher dirigido a esta carpeta, ahi se mueven los archivos a sincronizar. Agregar los archivos despues de ejecutar
+| client.c (Cambiar puerto a 8169)
+| log.txt (vacio)
+| submit.txt (vacio)
+Servidor
+| servercloud/ (vacia) <- Aqui se sincronizan todos los archivos para luego reenviarlos a los demás clientes
+| server.c
