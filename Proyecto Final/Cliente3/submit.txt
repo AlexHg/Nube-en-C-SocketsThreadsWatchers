@@ -1,8 +1,0 @@
-Archivo
-cloud/323327.jpg
-Acción id
-0
-Progreso
-250
-Totales
-250

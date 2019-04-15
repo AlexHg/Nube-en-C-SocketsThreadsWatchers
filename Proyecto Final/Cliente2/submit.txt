@@ -1,8 +1,0 @@
-Archivo
-cloud/Final1.tar.gz
-Acción id
-4
-Progreso
-10
-Totales
-10
