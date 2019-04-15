@@ -2,8 +2,8 @@
 
 ## Compilar:
 
-gcc -pthread server.c -o serv
-gcc -pthread client.c -o cli
+- gcc -pthread server.c -o serv
+- gcc -pthread client.c -o cli
 
 ## Notas:
 
